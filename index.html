@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Luisa Fernanda Pérez Selada — Portafolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  /* --- Ajuste: grilla de proyectos pareja (2x2) tras quitar el bloque de IA --- */
+  #proyectos .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    grid-template-areas:none !important;
+    grid-auto-rows:1fr;
+    gap:28px;
+  }
+  #proyectos .grid .proj{
+    grid-area:auto !important;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    min-height:280px;
+  }
+  #proyectos .grid .proj .card-btn{
+    margin-top:auto;
+  }
+  @media (max-width:720px){
+    #proyectos .grid{grid-template-columns:1fr;}
+  }
+
+  /* --- Nuevo: bloque "Mis estudios" en degradé con ícono animado --- */
+  .estudios{
+    margin-top:36px;
+    padding:32px;
+    border-radius:24px;
+    background:linear-gradient(135deg,#7C5CFF 0%,#FF3EA5 50%,#28E0A6 100%);
+    background-size:220% 220%;
+    animation:estudiosGradient 10s ease infinite;
+    color:#fff;
+    display:flex;
+    gap:24px;
+    align-items:flex-start;
+    position:relative;
+    overflow:hidden;
+  }
+  @keyframes estudiosGradient{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  .estudios-icon{
+    flex:none;
+    width:64px;height:64px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.18);
+    border-radius:16px;
+    animation:estudiosFloat 3s ease-in-out infinite;
+  }
+  @keyframes estudiosFloat{
+    0%,100%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(-6px) rotate(-6deg)}
+  }
+  .estudios-icon svg{width:34px;height:34px;color:#fff}
+  .estudios-content h3{margin:0 0 14px;font-size:1.15rem;font-weight:700;font-family:'Montserrat',sans-serif}
+  .estudios-content ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .estudios-content li{font-size:.95rem;line-height:1.45;font-family:'Montserrat',sans-serif}
+  .estudios-content li strong{font-weight:600}
+  .estudios-content li span{opacity:.85}
+  @media (max-width:640px){
+    .estudios{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero" id="inicio">
+  <nav>
+    <a class="logo" href="#inicio">Luisa<i>.</i></a>
+    <ul><li><a href="#sobre-mi">Sobre mí</a></li><li><a href="#proyectos">Proyectos</a></li></ul>
+    <a class="pill ghost small" href="#sobre-mi">Sobre mí</a>
+  </nav>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1>Luisa Fernanda <span>Pérez Selada</span></h1>
+      <p class="role">Diseñadora Industrial · Especialista en Ecommerce y marketing digital</p>
+      <p class="tag">Diseño experiencias físicas y digitales conectando diseño, tecnología y estrategia.</p>
+      <div class="cta">
+        <a class="pill mint" href="#sobre-mi">Sobre mí</a>
+        <a class="pill ghost" href="#proyectos">Ver proyectos</a>
+      </div>
+    </div>
+
+    <!-- FOTO: guarda tu PNG sin fondo como assets/foto.png y aparecerá aquí automáticamente -->
+    <div class="photo">
+      <div class="card"></div>
+      <svg class="ph" id="ph" viewBox="0 0 300 360" role="img" aria-label="Espacio para tu foto">
+        <circle cx="150" cy="105" r="55" fill="rgba(10,10,15,.18)"/>
+        <path d="M30 360c0-80 45-135 120-135s120 55 120 135z" fill="rgba(255,255,255,.35)"/>
+        <text x="150" y="300" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="15" font-weight="600" fill="rgba(10,10,15,.7)">Tu foto sin fondo aquí</text>
+      </svg>
+      <img id="me" data-src="assets/foto.png" alt="Luisa Fernanda Pérez Selada" hidden>
+      <span class="chip a">Ecommerce</span>
+      <span class="chip b">Diseño industrial</span>
+    </div>
+  </div>
+
+  <a class="badge" href="#sobre-mi" aria-label="Descubre más">
+    <svg viewBox="0 0 124 124" aria-hidden="true"><defs><path id="c" d="M62 62m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
+      <text fill="#fff" font-family="Montserrat,sans-serif" font-size="11" font-weight="600" letter-spacing="2.2"><textPath href="#c">DESCUBRE MÁS · DESCUBRE MÁS ·</textPath></text></svg>
+    <b>↓</b>
+  </a>
+</header>
+
+<main>
+  <section id="sobre-mi">
+    <span class="big" aria-hidden="true">01</span>
+    <div class="about in">
+      <div><h2>Sobre mí</h2></div>
+      <div>
+        <!-- EDITA: reemplaza este texto por tu perfil real -->
+        <p>Soy Luisa Fernanda Pérez Selada, diseñadora industrial especialista en ecommerce. Diseño experiencias físicas y digitales conectando diseño, tecnología y estrategia.</p>
+        <p>Mi trabajo va desde espacios, stands y visual merchandising hasta productos digitales, marca, contenido y crecimiento, siempre pensando en cómo las personas viven y compran.</p>
+        <ul class="tags">
+          <li>Diseño industrial</li><li>Ecommerce</li><li>UX/UI</li><li>Visual merchandising</li><li>Branding</li><li>3D</li><li>IA aplicada</li><li>Marketing y growth</li>
+        </ul>
+        <!-- EDITA: pon aquí el enlace de tu hoja de vida (un PDF en assets/cv.pdf o un link de Drive) -->
+        <a class="pill dark" href="assets/cv.pdf" target="_blank" rel="noopener">CV</a>
+
+        <div class="estudios">
+          <div class="estudios-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M32 10L58 22 32 34 6 22z"/>
+              <path d="M18 28v14c0 4 6 8 14 8s14-4 14-8V28"/>
+              <path d="M58 22v14"/>
+            </svg>
+          </div>
+          <div class="estudios-content">
+            <h3>Mis estudios</h3>
+            <ul>
+              <li><strong>Diseñadora Industrial</strong> <span>— Universidad Nacional de Colombia, 2022</span></li>
+              <li><strong>Diplomado en Ecommerce y Marketing Digital</strong> <span>— Universidad Autónoma de Occidente, 2024</span></li>
+              <li><strong>Especialista en Ecommerce y Marketing Digital</strong> <span>— Universidad de La Salle, 2026</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <span class="big" aria-hidden="true">02</span>
+    <h2 class="in">Mis proyectos</h2>
+    <div class="grid">
+      <article class="proj c1 in">
+        <svg class="ico ico-space" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><g class="cube"><path d="M60 14l38 22v44L60 102 22 80V36z"/><path d="M22 36l38 22 38-22M60 58v44"/></g><path class="floor" d="M32 112h56"/></svg>
+        <div class="top"><span class="n">01</span><h3>Espacios &amp; Experiencias</h3></div>
+        <p>Stands · Visual Merchandising · 3D · Planimetría · Experiencias</p>
+        <a class="pill card-btn" href="proyectos/espacios-experiencias.html">Ver proyectos</a>
+      </article>
+      <article class="proj c2 in">
+        <svg class="ico ico-ux" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="34" y="10" width="52" height="98" rx="10"/><path d="M52 20h16"/><rect class="blk b1" x="44" y="38" width="32" height="14" rx="4"/><rect class="blk b2" x="44" y="58" width="32" height="14" rx="4"/><path class="cur" d="M70 78v22l6-6 5 10 4-2-5-10 8-1z" fill="currentColor" stroke="none"/></svg>
+        <div class="top"><span class="n">02</span><h3>Digital Product &amp; UX</h3></div>
+        <p>Web · Apps · UX/UI · Figma · Prototipos · User Flows</p>
+        <a class="pill card-btn" href="proyectos/digital-product-ux.html">Ver proyectos</a>
+      </article>
+      <article class="proj c3 in">
+        <svg class="ico ico-motion" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><circle cx="60" cy="60" r="34"/><path class="play" d="M52 44l24 16-24 16z" fill="currentColor"/><g class="orbit"><circle cx="60" cy="10" r="5" fill="currentColor" stroke="none"/></g></svg>
+        <div class="top"><span class="n">03</span><h3>Visual &amp; Motion</h3></div>
+        <p>Branding · Campañas · Social Media · Video · Motion · Presentaciones</p>
+        <a class="pill card-btn" href="proyectos/visual-motion.html">Ver proyectos</a>
+      </article>
+      <article class="proj c5 in">
+        <svg class="ico ico-growth" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M14 106h92"/><rect class="bar b1" x="26" y="76" width="16" height="30" rx="3"/><rect class="bar b2" x="52" y="58" width="16" height="48" rx="3"/><rect class="bar b3" x="78" y="40" width="16" height="66" rx="3"/><path class="arr" pathLength="1" d="M22 50l22-18 16 10 30-26M80 16h12v12"/></svg>
+        <div class="top"><span class="n">04</span><h3>Marketing &amp; Growth</h3></div>
+        <p>Ecommerce · Estrategia · Campañas · Analítica</p>
+        <a class="pill card-btn" href="proyectos/marketing-growth.html">Ver proyectos</a>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer><strong>Luisa Fernanda Pérez Selada</strong>Diseñadora Industrial · Especialista en Ecommerce</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

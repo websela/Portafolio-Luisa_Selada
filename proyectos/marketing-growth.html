@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marketing & Growth — Luisa Fernanda Pérez Selada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  #marketingProjects.marketing-projects{
+    display:grid !important;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr)) !important;
+    gap:32px !important;
+    margin-top:8px;
+  }
+  #marketingProjects .project-full{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    flex-wrap:nowrap !important;
+    gap:0 !important;
+    width:auto !important;
+    max-width:none !important;
+    height:auto !important;
+    aspect-ratio:auto !important;
+    padding:0 !important;
+    border-radius:18px;
+    overflow:hidden;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    opacity:1;transform:none;
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  #marketingProjects .project-full.pre-reveal{opacity:0;transform:translateY(24px)}
+  #marketingProjects .project-full .pimg{
+    position:static !important;
+    inset:auto !important;
+    flex:none !important;
+    width:100% !important;
+    aspect-ratio:4/3;
+    border-radius:0;
+    overflow:hidden;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg, rgba(120,255,214,.22), rgba(255,120,220,.16));
+  }
+  #marketingProjects .project-full .pimg img{width:100%;height:100%;object-fit:cover;display:block}
+  #marketingProjects .project-full .pimg .ico{width:40%;margin:0}
+  #marketingProjects .project-full .pcap{
+    position:static !important;
+    inset:auto !important;
+    flex:none !important;
+    display:flex;flex-direction:column;gap:14px;
+    padding:20px;
+  }
+  #marketingProjects .project-full .pcap h3{margin:0;font-size:clamp(17px,2vw,20px);line-height:1.35}
+</style>
+</head>
+<body class="t-mint2">
+
+<header class="sub-hero">
+  <nav>
+    <a class="logo" href="../index.html">Luisa<i>.</i></a>
+    <ul><li><a href="../index.html#sobre-mi">Sobre mí</a></li><li><a href="../index.html#proyectos">Proyectos</a></li></ul>
+    <a class="pill ghost small" href="../index.html">Inicio</a>
+  </nav>
+  <div class="sub-grid">
+    <div>
+      <a class="back" href="../index.html#proyectos">← Volver a proyectos</a>
+      <span class="num">05</span>
+      <h1>Marketing &amp; Growth</h1>
+      <p>Estrategias de campaña, posicionamiento y crecimiento para marcas y productos, de principio a fin.</p>
+      <ul class="chips"><li>Ecommerce</li><li>Estrategia</li><li>Campañas</li><li>Analítica</li></ul>
+    </div>
+    <div class="icon-card"><svg class="ico ico-growth" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M14 106h92"/><rect class="bar b1" x="26" y="76" width="16" height="30" rx="3"/><rect class="bar b2" x="52" y="58" width="16" height="48" rx="3"/><rect class="bar b3" x="78" y="40" width="16" height="66" rx="3"/><path class="arr" pathLength="1" d="M22 50l22-18 16 10 30-26M80 16h12v12"/></svg></div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2 class="in">Proyectos de esta área</h2>
+    <p style="max-width:640px;margin:0 0 40px;opacity:.8">Una selección de trabajos de esta área. Abre cada proyecto para ver los detalles.</p>
+    <div class="marketing-projects" id="marketingProjects">
+      <article class="project-full pcard">
+        <div class="pimg" data-img="/assets/pdf/dermanat.png"><svg class="ico ico-growth" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M14 106h92"/><rect class="bar b1" x="26" y="76" width="16" height="30" rx="3"/><rect class="bar b2" x="52" y="58" width="16" height="48" rx="3"/><rect class="bar b3" x="78" y="40" width="16" height="66" rx="3"/><path class="arr" pathLength="1" d="M22 50l22-18 16 10 30-26M80 16h12v12"/></svg></div>
+        <div class="pcap">
+          <h3>Dermanat — estrategia Black Friday para un producto de ocasión</h3>
+          <button class="pill glass small" type="button" data-open>Ver más</button>
+        </div>
+        <!-- EDITA: contenido de la ventana emergente de este proyecto -->
+        <template>
+          <h4>Descripción corta</h4>
+          <p>E Black Week: Estrategia de Growth Marketing para impulsar ventas y fidelización durante Black Week, combinando ofertas, valor agregado, neuromarketing, canales digitales y acciones innovadoras.</p>
+          <h4>Herramientas que utilicé</h4>
+          <ul class="tools">
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Canva</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Estrategia de campaña</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Copywriting</li>
+          </ul>
+          <h4>Presentación (PDF)</h4>
+          <!-- PDF: sube tu archivo y reemplaza la ruta de abajo, ej. ../pdfs/dermanet.pdf -->
+          <div class="pdf-embed" style="position:relative;width:100%;height:70vh;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.05)">
+            <iframe src="/assets/pdf/ESTRATEGIADERMANAT.pdf" title="Presentación Dermanat" loading="lazy" style="width:100%;height:100%;border:0"></iframe>
+          </div>
+        </template>
+      </article>
+      <article class="project-full pcard">
+        <div class="pimg" data-img="/assets/pdf/PTRENDY.png"><svg class="ico ico-growth" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M14 106h92"/><rect class="bar b1" x="26" y="76" width="16" height="30" rx="3"/><rect class="bar b2" x="52" y="58" width="16" height="48" rx="3"/><rect class="bar b3" x="78" y="40" width="16" height="66" rx="3"/><path class="arr" pathLength="1" d="M22 50l22-18 16 10 30-26M80 16h12v12"/></svg></div>
+        <div class="pcap">
+          <h3>Trendy — estrategia para la línea Clean Trendy</h3>
+          <button class="pill glass small" type="button" data-open>Ver más</button>
+        </div>
+        <!-- EDITA: contenido de la ventana emergente de este proyecto -->
+        <template>
+          <h4>Descripción corta</h4>
+          <p>Quiet Beauty: Propuesta dirigida a la Generación Z que explora una versión más minimalista, tranquila y sofisticada de Trendy a través del concepto Quiet Beauty.</p>
+          <h4>Herramientas que utilicé</h4>
+          <ul class="tools">
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Canva</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Posicionamiento de marca</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Dirección de arte</li>
+          </ul>
+          <h4>Presentación (PDF)</h4>
+          <!-- PDF: sube tu archivo y reemplaza la ruta de abajo, ej. ../pdfs/trendy.pdf -->
+          <div class="pdf-embed" style="position:relative;width:100%;height:70vh;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.05)">
+            <iframe src="/assets/pdf/TRENDY.pdf" title="Presentación Trendy" loading="lazy" style="width:100%;height:100%;border:0"></iframe>
+          </div>
+        </template>
+      </article>
+      <article class="project-full pcard">
+        <div class="pimg" data-img="/assets/pdf/SEGUROS.png"><svg class="ico ico-growth" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M14 106h92"/><rect class="bar b1" x="26" y="76" width="16" height="30" rx="3"/><rect class="bar b2" x="52" y="58" width="16" height="48" rx="3"/><rect class="bar b3" x="78" y="40" width="16" height="66" rx="3"/><path class="arr" pathLength="1" d="M22 50l22-18 16 10 30-26M80 16h12v12"/></svg></div>
+        <div class="pcap">
+          <h3>Seguros del Estado — estrategia de marketing para la marca</h3>
+          <button class="pill glass small" type="button" data-open>Ver más</button>
+        </div>
+        <!-- EDITA: contenido de la ventana emergente de este proyecto -->
+        <template>
+          <h4>Descripción corta</h4>
+          <!-- EDITA: reemplaza por el objetivo puntual de esta pieza (lanzamiento, campaña estacional, posicionamiento, etc.) -->
+          <p>Branding: Estrategia de branding para fortalecer la presencia, reconocimiento y conexión de la marca en redes sociales.</p>
+          <h4>Herramientas que utilicé</h4>
+          <ul class="tools">
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Canva</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Estrategia de marca</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Herramienta 3</li>
+          </ul>
+          <h4>Presentación (PDF)</h4>
+          <!-- PDF: sube tu archivo y reemplaza la ruta de abajo, ej. ../pdfs/seguros-del-estado.pdf -->
+          <div class="pdf-embed" style="position:relative;width:100%;height:70vh;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.05)">
+            <iframe src="/assets/pdf/SEGUROS.pdf" title="Presentación Seguros del Estado" loading="lazy" style="width:100%;height:100%;border:0"></iframe>
+          </div>
+        </template>
+      </article>
+    </div>
+    <div class="pager">
+      <a class="pill line" href="ia-aplicada-al-diseno.html">← IA aplicada al diseño</a>
+      <a class="pill line" href="espacios-experiencias.html">Espacios &amp; Experiencias →</a>
+    </div>
+  </section>
+</main>
+
+<footer><strong>Luisa Fernanda Pérez Selada</strong>Diseñadora Industrial · Especialista en Ecommerce</footer>
+<!-- Ventana emergente (se llena con el contenido de cada proyecto) -->
+<div class="modal" id="modal" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="mwin" role="dialog" aria-modal="true" aria-labelledby="mTitle" tabindex="-1">
+    <div class="mbar">
+      <span class="mlabel"><i></i>Marketing &amp; Growth</span>
+      <div class="mctl">
+        <button class="glass mbtn" type="button" data-act="min" aria-label="Minimizar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>
+        <button class="glass mbtn" type="button" data-act="fit" aria-label="Ajustar tamaño" aria-pressed="false"><svg class="i-exp" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg><svg class="i-min" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10h-6V4M4 14h6v6M14 10l7-7M10 14l-7 7"/></svg></button>
+        <button class="glass mbtn" type="button" data-act="close" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+<button class="pill glass small dock" id="dock" type="button" data-act="restore" aria-label="Restaurar proyecto"><span id="dockTitle">Proyecto</span> ↑</button>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('#marketingProjects .project-full');
+  if(!els.length || !('IntersectionObserver' in window)) return;
+  els.forEach(function(el){ el.classList.add('pre-reveal'); });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var el = entry.target;
+        var i = Array.prototype.indexOf.call(els, el);
+        setTimeout(function(){ el.classList.remove('pre-reveal'); }, i*120);
+        obs.unobserve(el);
+      }
+    });
+  }, {threshold:.2});
+  els.forEach(function(el){ obs.observe(el); });
+})();
+</script>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Espacios & Experiencias — Luisa Fernanda Pérez Selada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="t-mint">
+
+<header class="sub-hero">
+  <nav>
+    <a class="logo" href="../index.html">Luisa<i>.</i></a>
+    <ul><li><a href="../index.html#sobre-mi">Sobre mí</a></li><li><a href="../index.html#proyectos">Proyectos</a></li></ul>
+    <a class="pill ghost small" href="../index.html">Inicio</a>
+  </nav>
+  <div class="sub-grid">
+    <div>
+      <a class="back" href="../index.html#proyectos">← Volver a proyectos</a>
+      <span class="num">01</span>
+      <h1>Espacios &amp; Experiencias</h1>
+      <!-- EDITA: descripción de esta área -->
+      <p>Aquí encontrarás mis proyectos de esta área.</p>
+      <ul class="chips"><li>Stands</li><li>Visual Merchandising</li><li>3D</li><li>Planimetría</li><li>Experiencias</li></ul>
+    </div>
+    <div class="icon-card"><svg class="ico ico-space" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><g class="cube"><path d="M60 14l38 22v44L60 102 22 80V36z"/><path d="M22 36l38 22 38-22M60 58v44"/></g><path class="floor" d="M32 112h56"/></svg></div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2 class="in">Proyectos de esta área</h2>
+    <!-- EDITA: duplica un bloque <article class="pcard"> por cada proyecto (sube --i en el style: 0, 2, 3, 4...) -->
+    <div class="carousel in">
+      <button class="glass car-btn prev" type="button" aria-label="Ver proyectos anteriores" data-car="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="cascade">
+        <article class="pcard" style="--i:0;--r:-4deg">
+          <!-- IMAGEN: pon data-img="../assets/proyectos/tu-imagen.jpg" para mostrar tu imagen -->
+          <div class="pimg" data-img="/assets/STANDS/ParqueBosqueMunicipal.JPEG"><svg class="ico ico-space" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><g class="cube"><path d="M60 14l38 22v44L60 102 22 80V36z"/><path d="M22 36l38 22 38-22M60 58v44"/></g><path class="floor" d="M32 112h56"/></svg></div>
+          <div class="pcap">
+            <h3>Parque infantil con narrativa visual </h3>
+            <button class="pill glass small" type="button" data-open>Ver proyecto</button>
+          </div>
+          <!-- EDITA: contenido de la ventana emergente de este proyecto -->
+          <template>
+            <h4>Descripción corta</h4>
+            <p>Alcaldía de Palmira · 2020 Concepto creativo, renders y diseño espacial para primera infancia, integrando elementos representativos de Palmira.</p>
+            <h4>Herramientas que utilicé</h4>
+            <ul class="tools">
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Autodesk inventor</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">KeyshoT</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">VRAY </li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Rhinoceros</li>
+            </ul>
+          </template>
+        </article>
+        <aside class="pintro" style="--i:1;--r:1.5deg">
+          <span class="dot"></span>
+          <h3>Selección de proyectos</h3>
+          <!-- EDITA: texto de introducción -->
+          <p>Una selección de trabajos de esta área. Abre cada tarjeta para ver los detalles.</p>
+        </aside>
+        <article class="pcard" style="--i:2;--r:2deg">
+          <!-- IMAGEN: pon data-img="../assets/proyectos/tu-imagen.jpg" para mostrar tu imagen -->
+          <div class="pimg" data-img="/assets/STANDS/PALMIRANAV.JPEG"><svg class="ico ico-space" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><g class="cube"><path d="M60 14l38 22v44L60 102 22 80V36z"/><path d="M22 36l38 22 38-22M60 58v44"/></g><path class="floor" d="M32 112h56"/></svg></div>
+          <div class="pcap">
+            <h3>PALMIRA SE VISTE DE NAVIDAD</h3>
+            <button class="pill glass small" type="button" data-open>Ver proyecto</button>
+          </div>
+          <!-- EDITA: contenido de la ventana emergente de este proyecto -->
+          <template>
+            <h4>Descripción corta</h4>
+            <p>Alcaldía de Palmira · 2023
+Concepto creativo, planos, modelado 3D, renders y desarrollo de producción y montaje de la ambientación navideña municipal.</p>
+            <h4>Herramientas que utilicé</h4>
+            <ul class="tools">
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Rhinoceros</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Excel Organizacional Montaje</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Adobe ILustrator</li>
+            </ul>
+          </template>
+        </article>
+        <article class="pcard" style="--i:3;--r:-2deg">
+          <!-- IMAGEN: pon data-img="../assets/proyectos/tu-imagen.jpg" para mostrar tu imagen -->
+          <div class="pimg" data-img="/assets/STANDS/BASELEY.JPEG"><svg class="ico ico-space" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><g class="cube"><path d="M60 14l38 22v44L60 102 22 80V36z"/><path d="M22 36l38 22 38-22M60 58v44"/></g><path class="floor" d="M32 112h56"/></svg></div>
+          <div class="pcap">
+            <h3>STAND LEYENDAS</h3>
+            <button class="pill glass small" type="button" data-open>Ver proyecto</button>
+          </div>
+          <!-- EDITA: contenido de la ventana emergente de este proyecto -->
+          <template>
+            <h4>Descripción corta</h4>
+            <p>Diseño de concepto y artes gráficos para stand temático inspirado en leyendas, llevando la identidad visual al espacio físico.</p>
+            <h4>Herramientas que utilicé</h4>
+            <ul class="tools">
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Photoshop</li>
+             
+            </ul>
+          </template>
+        </article>
+        <article class="pcard" style="--i:4;--r:3deg">
+          <!-- IMAGEN: pon data-img="../assets/proyectos/tu-imagen.jpg" para mostrar tu imagen -->
+          <div class="pimg" data-img="/assets/STANDS/EMPAQUEDROPI.PNG"><svg class="ico ico-space" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><g class="cube"><path d="M60 14l38 22v44L60 102 22 80V36z"/><path d="M22 36l38 22 38-22M60 58v44"/></g><path class="floor" d="M32 112h56"/></svg></div>
+          <div class="pcap">
+            <h3>EXPERIENCIA EMPAQUE MERCH DROPI04</h3>
+            <button class="pill glass small" type="button" data-open>Ver proyecto</button>
+          </div>
+          <!-- EDITA: contenido de la ventana emergente de este proyecto -->
+          <template>
+            <h4>Descripción corta</h4>
+            <p>Concepto y diseño de empaque para kit de fidelización, integrando productos promocionales como loción y reloj.</p>
+            <h4>Herramientas que utilicé</h4>
+            <ul class="tools">
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Rhinoceros</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Keyshot</li>
+              <li tabindex="0" data-tip="Explica aquí para qué usaste esta herramienta.">Photoshop</li>
+            </ul>
+          </template>
+        </article>
+        <span class="bubble b1" aria-hidden="true">Stands</span>
+        <span class="bubble b2" aria-hidden="true">Visual Merchandising</span>
+      </div>
+      <button class="glass car-btn next" type="button" aria-label="Ver más proyectos" data-car="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="pager">
+      <a class="pill line" href="marketing-growth.html">← Marketing &amp; Growth</a>
+      <a class="pill line" href="digital-product-ux.html">Digital Product &amp; UX →</a>
+    </div>
+  </section>
+</main>
+
+<footer><strong>Luisa Fernanda Pérez Selada</strong>Diseñadora Industrial · Especialista en Ecommerce</footer>
+<!-- Ventana emergente (se llena con el contenido de cada proyecto) -->
+<div class="modal" id="modal" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="mwin" role="dialog" aria-modal="true" aria-labelledby="mTitle" tabindex="-1">
+    <div class="mbar">
+      <span class="mlabel"><i></i>Espacios &amp; Experiencias</span>
+      <div class="mctl">
+        <button class="glass mbtn" type="button" data-act="min" aria-label="Minimizar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>
+        <button class="glass mbtn" type="button" data-act="fit" aria-label="Ajustar tamaño" aria-pressed="false"><svg class="i-exp" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg><svg class="i-min" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10h-6V4M4 14h6v6M14 10l7-7M10 14l-7 7"/></svg></button>
+        <button class="glass mbtn" type="button" data-act="close" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+<button class="pill glass small dock" id="dock" type="button" data-act="restore" aria-label="Restaurar proyecto"><span id="dockTitle">Proyecto</span> ↑</button>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

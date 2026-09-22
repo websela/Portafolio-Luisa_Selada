@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visual & Motion — Luisa Fernanda Pérez Selada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  /* --- Paleta local de esta página (no toca styles.css global) --- */
+  .vm-wrap{
+    --vm-ink:#17121b;
+    --vm-paper:#fff7fb;
+    --vm-pink:#ff4f9a;
+    --vm-lilac:#a78bfa;
+    --vm-mint:#5eead4;
+    --vm-line:rgba(23,18,27,.12);
+  }
+  /* Centrado forzado: independiente de lo que traiga styles.css */
+  main.vm-wrap{
+    max-width:1240px !important;
+    width:100% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:clamp(1.25rem,4vw,3rem) !important;
+    padding-right:clamp(1.25rem,4vw,3rem) !important;
+    box-sizing:border-box !important;
+    float:none !important;
+  }
+  /* Neutraliza cualquier padding vertical genérico que styles.css aplique a <section> */
+  .vm-wrap > section{
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+  }
+  .vm-lead{
+    max-width:62ch;
+    font-size:1.05rem;
+    line-height:1.6;
+    color:var(--vm-ink);
+    opacity:.86;
+    margin:0 0 2rem;
+  }
+  .vm-group{ margin:0 0 2.4rem; }
+
+  /* ---------- Divisores animados entre secciones ---------- */
+  .vm-divider{
+    position:relative;
+    height:2px;
+    margin:0 0 2.4rem;
+    border-radius:2px;
+    overflow:hidden;
+    background:var(--vm-line);
+  }
+  .vm-divider::before{
+    content:'';
+    position:absolute;
+    top:0; bottom:0; left:0;
+    width:38%;
+    background:linear-gradient(90deg,
+      transparent,
+      var(--vm-pink) 35%,
+      var(--vm-lilac) 65%,
+      var(--vm-mint),
+      transparent);
+    filter:blur(.2px);
+    animation:vmDividerSlide 6s ease-in-out infinite;
+  }
+  @keyframes vmDividerSlide{
+    0%{ transform:translateX(-110%); }
+    50%{ transform:translateX(280%); }
+    100%{ transform:translateX(-110%); }
+  }
+  .vm-group-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:.6rem 1.2rem;
+    margin-bottom:1.4rem;
+  }
+  .vm-group-head h2{ margin:0; }
+  .vm-group-desc{
+    margin:0;
+    font-size:.95rem;
+    color:var(--vm-ink);
+    opacity:.6;
+  }
+  .vm-frame-cap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.5rem;
+    margin-top:.7rem;
+    font-size:.85rem;
+    color:var(--vm-ink);
+  }
+  .vm-frame-cap b{ font-weight:600; }
+  .vm-frame-cap span{ opacity:.55; }
+
+  /* placeholder de imagen: gradiente + icono, se reemplaza si data-img trae una URL */
+  .vm-ph{
+    position:relative;
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    background:
+      radial-gradient(120% 140% at 15% 0%, color-mix(in srgb, var(--vm-lilac) 55%, transparent), transparent 60%),
+      linear-gradient(155deg, var(--vm-ink) 0%, #2a1f33 55%, var(--vm-pink) 130%);
+    overflow:hidden;
+  }
+  .vm-ph img{ width:100%; height:100%; object-fit:cover; display:none; }
+  .vm-ph.has-img img{ display:block; }
+  .vm-ph.has-img svg{ display:none; }
+  .vm-ph svg{ width:34%; height:34%; opacity:.5; color:#fff; }
+
+  /* ---------- Carruseles ---------- */
+  .vm-carousel-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.6rem;
+  }
+  .vm-carousel{ display:flex; flex-direction:column; }
+  .vm-carousel-frame{
+    aspect-ratio:1/1;
+    border-radius:22px;
+    border:1px solid var(--vm-line);
+    overflow:hidden;
+    position:relative;
+    background:var(--vm-paper);
+  }
+  .vm-carousel-track{
+    display:flex;
+    height:100%;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .vm-carousel-track::-webkit-scrollbar{ display:none; }
+  .vm-slide{
+    flex:0 0 100%;
+    scroll-snap-align:start;
+    position:relative;
+  }
+  .vm-slide .vm-slide-n{
+    position:absolute; top:14px; left:14px;
+    font-size:.72rem; font-weight:600; color:#fff;
+    background:rgba(23,18,27,.35);
+    backdrop-filter:blur(6px);
+    padding:.25rem .55rem;
+    border-radius:999px;
+  }
+  .vm-dots{
+    display:flex; gap:.4rem; justify-content:center;
+    margin-top:.7rem;
+  }
+  .vm-dots span{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--vm-line);
+    transition:background .2s, transform .2s;
+  }
+  .vm-dots span.active{
+    background:var(--vm-pink);
+    transform:scale(1.35);
+  }
+
+  /* ---------- Botones "liquid glass" (solo escritorio) ---------- */
+  .vm-nav{
+    position:absolute;
+    top:50%;
+    width:42px; height:42px;
+    display:none;
+    align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,.4);
+    border-radius:50%;
+    background:linear-gradient(155deg, rgba(255,255,255,.38), rgba(255,255,255,.08));
+    backdrop-filter:blur(14px) saturate(180%);
+    -webkit-backdrop-filter:blur(14px) saturate(180%);
+    box-shadow:
+      0 8px 22px rgba(23,18,27,.22),
+      inset 0 1px 1px rgba(255,255,255,.75),
+      inset 0 -6px 10px rgba(23,18,27,.12);
+    color:#fff;
+    cursor:pointer;
+    z-index:4;
+    opacity:0;
+    transform:translateY(-50%);
+    transition:opacity .25s ease, transform .25s ease, background .25s ease;
+  }
+  .vm-nav svg{ width:17px; height:17px; }
+  .vm-nav.prev{ left:12px; }
+  .vm-nav.next{ right:12px; }
+  .vm-carousel-frame:hover .vm-nav{ opacity:1; }
+  .vm-nav:hover{
+    background:linear-gradient(155deg, rgba(255,255,255,.55), rgba(255,255,255,.16));
+    transform:translateY(-50%) scale(1.08);
+  }
+  .vm-nav:active{ transform:translateY(-50%) scale(.92); }
+  .vm-nav[disabled]{ opacity:0 !important; pointer-events:none; }
+
+  /* ---------- Historias ---------- */
+  .vm-story-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1.2rem;
+  }
+  .vm-story{ display:flex; flex-direction:column; }
+  .vm-story-frame{
+    aspect-ratio:9/16;
+    border-radius:20px;
+    border:1px solid var(--vm-line);
+    overflow:hidden;
+    position:relative;
+    background:var(--vm-paper);
+  }
+  .vm-story-progress{
+    position:absolute; top:10px; left:10px; right:10px;
+    display:flex; gap:4px; z-index:2;
+  }
+  .vm-story-progress span{
+    flex:1; height:3px; border-radius:3px;
+    background:rgba(255,255,255,.35);
+    overflow:hidden;
+  }
+  .vm-story-progress span i{
+    display:block; height:100%; width:0%;
+    background:#fff;
+    animation:vmStoryFill 6s linear infinite;
+  }
+  .vm-story-progress span:nth-child(1) i{ animation-delay:0s; }
+  .vm-story-progress span:nth-child(2) i{ animation-delay:1.5s; }
+  .vm-story-progress span:nth-child(3) i{ animation-delay:3s; }
+  .vm-story-progress span:nth-child(4) i{ animation-delay:4.5s; }
+  @keyframes vmStoryFill{ 0%{width:0%;} 25%{width:100%;} 100%{width:100%;} }
+
+  /* ---------- Banners ---------- */
+  .vm-banner-stack{ display:flex; flex-direction:column; gap:1.2rem; }
+  .vm-banner-frame{
+    aspect-ratio:4/1;
+    border-radius:18px;
+    border:1px solid var(--vm-line);
+    overflow:hidden;
+  }
+  @media (max-width:640px){ .vm-banner-frame{ aspect-ratio:16/9; } }
+
+  @media (max-width:900px){
+    .vm-carousel-row{ grid-template-columns:repeat(2,1fr); }
+    .vm-story-row{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:560px){
+    .vm-carousel-row,.vm-story-row{ grid-template-columns:1fr; }
+  }
+
+  /* Escritorio: se desliza solo con los botones liquid glass */
+  @media (min-width:901px){
+    .vm-carousel-track{
+      overflow-x:hidden;
+      cursor:default;
+      scroll-behavior:smooth;
+    }
+    .vm-nav{ display:flex; }
+  }
+  /* Móvil / tablet: se conserva el deslizamiento táctil */
+  @media (max-width:900px){
+    .vm-carousel-track{ -webkit-overflow-scrolling:touch; }
+    .vm-nav{ display:none !important; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .vm-story-progress span i{ animation:none !important; }
+    .vm-divider::before{ animation:none !important; }
+  }
+</style>
+</head>
+<body class="t-pink">
+
+<header class="sub-hero">
+  <nav>
+    <a class="logo" href="../index.html">Luisa<i>.</i></a>
+    <ul><li><a href="../index.html#sobre-mi">Sobre mí</a></li><li><a href="../index.html#proyectos">Proyectos</a></li></ul>
+    <a class="pill ghost small" href="../index.html">Inicio</a>
+  </nav>
+  <div class="sub-grid">
+    <div>
+      <a class="back" href="../index.html#proyectos">← Volver a proyectos</a>
+      <span class="num">03</span>
+      <h1>Visual &amp; Motion</h1>
+      <p>Piezas visuales para redes sociales: carruseles, historias y banners, pensados para acompañar campañas y posicionar marca en cada plataforma.</p>
+      <ul class="chips"><li>Branding</li><li>Campañas</li><li>Social Media</li><li>Video</li><li>Motion</li><li>Presentaciones</li></ul>
+    </div>
+    <div class="icon-card"><svg class="ico ico-motion" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><circle cx="60" cy="60" r="34"/><path class="play" d="M52 44l24 16-24 16z" fill="currentColor"/><g class="orbit"><circle cx="60" cy="10" r="5" fill="currentColor" stroke="none"/></g></svg></div>
+  </div>
+</header>
+
+<main class="vm-wrap">
+
+  <section>
+    <p class="vm-lead in">Aquí reúno piezas creadas para redes: contenido deslizable, historias de 15 segundos y banners de campaña. Cada casilla está lista para recibir tu imagen o clip real.</p>
+  </section>
+
+  <!-- CARRUSELES -->
+  <section class="vm-group">
+    <div class="vm-group-head">
+      <h2 class="in">Carruseles</h2>
+      <p class="vm-group-desc">Contenido deslizable para Instagram y LinkedIn — desliza cada mockup para ver sus tarjetas.</p>
+    </div>
+    <div class="vm-carousel-row">
+
+      <!-- EDITA: en cada .vm-slide pon data-img="../assets/proyectos/tu-imagen.jpg" -->
+      <article class="vm-carousel">
+        <div class="vm-carousel-frame">
+          <div class="vm-carousel-track" data-track>
+            <div class="vm-slide"><span class="vm-slide-n">1/4</span><div class="vm-ph" data-img="/assets/visual/carruselecuador-01.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">2/4</span><div class="vm-ph" data-img="/assets/visual/carruselecuador-02.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">3/4</span><div class="vm-ph" data-img="/assets/visual/carruselecuador-03.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">4/4</span><div class="vm-ph" data-img="/assets/visual/carruselecuador-04.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+          <div class="vm-slide"><span class="vm-slide-n">4/4</span><div class="vm-ph" data-img="/assets/visual/carruselecuador-05.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+          
+          </div>
+          <button class="vm-nav prev" type="button" aria-label="Tarjeta anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vm-nav next" type="button" aria-label="Tarjeta siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vm-dots" data-dots><span class="active"></span><span></span><span></span><span></span></div>
+        <div class="vm-frame-cap"><b>Carrusel 01</b><span>4 tarjetas</span></div>
+      </article>
+
+      <article class="vm-carousel">
+        <div class="vm-carousel-frame">
+          <div class="vm-carousel-track" data-track>
+            <div class="vm-slide"><span class="vm-slide-n">1/3</span><div class="vm-ph" data-img="/assets/visual/PORTADDROPITURBO.png"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">2/3</span><div class="vm-ph" data-img="/assets/visual/S1DROPITURBO.png"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">3/3</span><div class="vm-ph" data-img="/assets/visual/S4DROPITURBO.png"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+             <div class="vm-slide"><span class="vm-slide-n">3/3</span><div class="vm-ph" data-img="/assets/visual/S6DROPITURBO.png"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+          </div>
+          <button class="vm-nav prev" type="button" aria-label="Tarjeta anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vm-nav next" type="button" aria-label="Tarjeta siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vm-dots" data-dots><span class="active"></span><span></span><span></span></div>
+        <div class="vm-frame-cap"><b>Carrusel 02</b><span>3 tarjetas</span></div>
+      </article>
+
+      <article class="vm-carousel">
+        <div class="vm-carousel-frame">
+          <div class="vm-carousel-track" data-track>
+            <div class="vm-slide"><span class="vm-slide-n">1/5</span><div class="vm-ph" data-img="/assets/visual/chatea11-01.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">2/5</span><div class="vm-ph" data-img="/assets/visual/chatea11-02.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">3/5</span><div class="vm-ph" data-img="/assets/visual/chatea11-03.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">4/5</span><div class="vm-ph" data-img=""><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+            <div class="vm-slide"><span class="vm-slide-n">5/5</span><div class="vm-ph" data-img=""><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+          </div>
+          <button class="vm-nav prev" type="button" aria-label="Tarjeta anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="vm-nav next" type="button" aria-label="Tarjeta siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="vm-dots" data-dots><span class="active"></span><span></span><span></span><span></span><span></span></div>
+        <div class="vm-frame-cap"><b>Carrusel 03</b><span>5 tarjetas</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="vm-divider" aria-hidden="true"></div>
+
+  <!-- HISTORIAS -->
+  <section class="vm-group">
+    <div class="vm-group-head">
+      <h2 class="in">Historias</h2>
+      <p class="vm-group-desc">Piezas verticales de 15 segundos para Stories de Instagram y Facebook.</p>
+    </div>
+    <div class="vm-story-row">
+      <!-- EDITA: pon data-img="../assets/proyectos/tu-imagen.jpg" en cada .vm-ph -->
+      <article class="vm-story">
+        <div class="vm-story-frame">
+          <div class="vm-story-progress"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+          <div class="vm-ph" data-img="/assets/visual/AFFIH.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        </div>
+        <div class="vm-frame-cap"><b>Historia AFFI</b></div>
+      </article>
+      <article class="vm-story">
+        <div class="vm-story-frame">
+          <div class="vm-story-progress"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+          <div class="vm-ph" data-img="/assets/visual/dropicup.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        </div>
+        <div class="vm-frame-cap"><b>Historia DROPICUP</b></div>
+      </article>
+      <article class="vm-story">
+        <div class="vm-story-frame">
+          <div class="vm-story-progress"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+          <div class="vm-ph" data-img="/assets/visual/Confio.Png"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        </div>
+        <div class="vm-frame-cap"><b>Historia 03</b></div>
+      </article>
+      <article class="vm-story">
+        <div class="vm-story-frame">
+          <div class="vm-story-progress"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+          <div class="vm-ph" data-img="/assets/visual/HISTORIASR.png"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        </div>
+        <div class="vm-frame-cap"><b>Historia 04</b></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="vm-divider" aria-hidden="true"></div>
+
+  <!-- BANNERS -->
+  <section class="vm-group">
+    <div class="vm-group-head">
+      <h2 class="in">Banners</h2>
+      <p class="vm-group-desc">Piezas horizontales para pauta digital y encabezados de campaña.</p>
+    </div>
+    <div class="vm-banner-stack">
+      <!-- EDITA: pon data-img="../assets/proyectos/tu-imagen.jpg" en cada .vm-ph -->
+      <div class="vm-banner-frame"><div class="vm-ph" data-img="/assets/visual/Bannershopify.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+      <div class="vm-banner-frame"><div class="vm-ph" data-img="/assets/visual/banner1.jpg"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.6" fill="currentColor"/><path d="M4 17l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div></div>
+    </div>
+  </section>
+
+  <div class="pager">
+    <a class="pill line" href="digital-product-ux.html">← Digital Product &amp; UX</a>
+    <a class="pill line" href="ia-aplicada-al-diseno.html">IA aplicada al diseño →</a>
+  </div>
+</main>
+
+<footer><strong>Luisa Fernanda Pérez Selada</strong>Diseñadora Industrial · Especialista en Ecommerce</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  // Aplica imágenes reales cuando se rellene data-img="" en cualquier .vm-ph
+  document.querySelectorAll('.vm-ph[data-img]').forEach(function(ph){
+    var url = ph.getAttribute('data-img');
+    if(url){
+      var img = document.createElement('img');
+      img.src = url; img.alt = '';
+      ph.appendChild(img);
+      ph.classList.add('has-img');
+    }
+  });
+
+  // Sincroniza los puntos de cada carrusel con la tarjeta visible al deslizar
+  document.querySelectorAll('[data-track]').forEach(function(track){
+    var wrap = track.closest('.vm-carousel');
+    var dots = wrap.querySelectorAll('[data-dots] span');
+    var raf = null;
+    track.addEventListener('scroll', function(){
+      if(raf) return;
+      raf = requestAnimationFrame(function(){
+        var i = Math.round(track.scrollLeft / track.clientWidth);
+        dots.forEach(function(d, n){ d.classList.toggle('active', n === i); });
+        raf = null;
+      });
+    });
+  });
+
+  // Botones "liquid glass": mueven el carrusel una tarjeta a la vez (solo escritorio)
+  document.querySelectorAll('.vm-carousel').forEach(function(wrap){
+    var track = wrap.querySelector('[data-track]');
+    var prevBtn = wrap.querySelector('.vm-nav.prev');
+    var nextBtn = wrap.querySelector('.vm-nav.next');
+    var slides = wrap.querySelectorAll('.vm-slide');
+    if(!track || !slides.length) return;
+
+    function updateButtons(){
+      var max = track.scrollWidth - track.clientWidth - 2;
+      if(prevBtn) prevBtn.disabled = track.scrollLeft <= 2;
+      if(nextBtn) nextBtn.disabled = track.scrollLeft >= max;
+    }
+    function goTo(dir){
+      track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
+    }
+    if(prevBtn) prevBtn.addEventListener('click', function(){ goTo(-1); });
+    if(nextBtn) nextBtn.addEventListener('click', function(){ goTo(1); });
+
+    track.addEventListener('scroll', function(){
+      requestAnimationFrame(updateButtons);
+    });
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+  });
+</script>
+</body>
+</html>

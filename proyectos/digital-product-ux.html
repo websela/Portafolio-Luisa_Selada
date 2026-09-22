@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digital Product & UX — Luisa Fernanda Pérez Selada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  /* ===== Mockups dentro de la ventana emergente de cada proyecto =====
+     Para poner tu imagen: en el <span class="mock-img"> cambia  --img:none
+     por  --img:url('../assets/proyectos/tu-imagen.jpg')  */
+  .mock{margin:0 auto 1.5rem;position:relative;box-sizing:border-box}
+  .mock-screen{position:relative;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#f4f1fc,#e5dff8)}
+  .mock-screen::before{content:attr(data-label);padding:1rem;text-align:center;font:600 .8rem/1.35 Montserrat,system-ui,sans-serif;color:#7d72b8}
+  .mock-img{position:absolute;inset:0;background-image:var(--img,none);background-position:center top;background-size:cover;background-repeat:no-repeat}
+
+  /* Mockup de navegador (proyectos web) */
+  .mock-browser{width:100%;max-width:540px;border-radius:14px;overflow:hidden;border:1px solid #d9d2f2;background:#fff;box-shadow:0 16px 36px -20px rgba(60,40,120,.5)}
+  .mock-bar{display:flex;align-items:center;gap:6px;padding:.6rem .8rem;background:#f5f2fc;border-bottom:1px solid #e3ddf5}
+  .mock-bar i{width:9px;height:9px;border-radius:50%;background:#cfc6ee}
+  .mock-bar span{flex:1;height:18px;margin-left:.6rem;border-radius:9px;background:#fff}
+  .mock-browser .mock-screen{aspect-ratio:16/10}
+
+  /* Mockup de celular (app móvil) */
+  .mock-phone{width:min(210px,62%);aspect-ratio:9/19;padding:10px;border-radius:34px;background:#1b1530;box-shadow:0 18px 40px -18px rgba(27,21,48,.65)}
+  .mock-phone::after{content:"";position:absolute;top:17px;left:50%;width:56px;height:16px;transform:translateX(-50%);border-radius:10px;background:#1b1530;z-index:2}
+  .mock-phone .mock-screen{height:100%;border-radius:25px}
+  .mock-phone .mock-img{background-position:center}
+
+  .team{margin:.2rem 0 0}
+
+  /* ===== Hero con la diagramación del referente =====
+     Titular a la izquierda · panel lila con imagen a la derecha · tarjeta negra con chips · tarjeta de cifras.
+     Todo va acotado a .ref-board, así no toca el resto del sitio.
+     Para poner tu imagen del panel: en <span class="r-img"> cambia  --img:none
+     por  --img:url('../assets/proyectos/hero-ux.png')  (funciona muy bien con PNG recortado) */
+  .sub-hero .ref-board{--ink:#100c1e;--violet:#7a55d8;--pink:#e46ac4;--soft:#f4f1fc;
+    position:relative;box-sizing:border-box;width:min(100%,1120px);margin:1.2rem auto 0;padding:clamp(1.1rem,3vw,2.2rem);
+    display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);grid-template-areas:"copy panel" "tags panel";gap:1.5rem 2.2rem;
+    background:#fff;border-radius:36px;color:var(--ink);font-family:Montserrat,system-ui,sans-serif;text-align:left}
+  .sub-hero .ref-board *{box-sizing:border-box}
+
+  .sub-hero .ref-board .r-copy{grid-area:copy;align-self:center;padding-top:.4rem}
+  .sub-hero .ref-board .r-back{display:inline-block;margin:0 0 1.1rem;font:600 .82rem/1 Montserrat,system-ui,sans-serif;color:var(--violet);text-decoration:none}
+  .sub-hero .ref-board .r-back:hover{text-decoration:underline}
+  .sub-hero .ref-board .r-copy h1{margin:0 0 1rem;font:700 clamp(2.5rem,5.4vw,4.3rem)/1.04 Montserrat,system-ui,sans-serif;letter-spacing:-.025em;color:var(--ink)}
+  .sub-hero .ref-board .r-copy h1 em{font-style:normal;color:var(--violet);background:linear-gradient(100deg,var(--violet),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .sub-hero .ref-board .r-copy p{margin:0;max-width:44ch;font:400 .95rem/1.65 Montserrat,system-ui,sans-serif;color:#4a4363}
+  .sub-hero .ref-board .r-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.5rem}
+  .sub-hero .ref-board .r-btn{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.45rem;border-radius:999px;font:600 .85rem/1 Montserrat,system-ui,sans-serif;text-decoration:none;border:1px solid var(--ink);transition:transform .2s ease,box-shadow .2s ease}
+  .sub-hero .ref-board .r-btn.solid{background:var(--ink);color:#fff}
+  .sub-hero .ref-board .r-btn.line{background:#fff;color:var(--ink);border-color:#d8d2ea}
+  .sub-hero .ref-board .r-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(16,12,30,.6)}
+  .sub-hero .ref-board .r-btn:focus-visible,.sub-hero .ref-board .r-back:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+  .sub-hero .ref-board .r-btn.sm{padding:.6rem 1.1rem;font-size:.78rem}
+
+  /* Tarjeta negra con chips */
+  .sub-hero .ref-board .r-tags{grid-area:tags;align-self:end;margin:0;padding:1.3rem;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.7rem;background:var(--ink);border-radius:32px}
+  .sub-hero .ref-board .r-tags li{margin:0;padding:.75rem .6rem;text-align:center;border:1px solid rgba(255,255,255,.5);border-radius:999px;font:500 .82rem/1.1 Montserrat,system-ui,sans-serif;color:#fff}
+  .sub-hero .ref-board .r-tags li.on{background:linear-gradient(135deg,#fff,#efe4ff);border-color:transparent;color:var(--ink);font-weight:600;box-shadow:0 0 0 4px rgba(214,170,255,.32),0 0 24px rgba(240,150,220,.55)}
+
+  /* Panel lila con imagen */
+  .sub-hero .ref-board .r-panel{grid-area:panel;position:relative;min-height:440px;border-radius:34px;background:linear-gradient(155deg,#dccbf7 0%,#c4a5ef 55%,#d6a8e6 100%)}
+  .sub-hero .ref-board .r-media{position:absolute;inset:0;border-radius:inherit;overflow:hidden;display:grid;place-items:center}
+  .sub-hero .ref-board .r-ph{display:grid;justify-items:center;gap:.8rem;padding:1rem 1rem 5.5rem;text-align:center;font:600 .8rem/1.35 Montserrat,system-ui,sans-serif;color:#4a3a86}
+  .sub-hero .ref-board .r-ph svg{width:min(190px,46%);height:auto;color:#fff}
+  .sub-hero .ref-board .r-img{position:absolute;inset:0;background-image:var(--img,none);background-position:center bottom;background-size:cover;background-repeat:no-repeat}
+  .sub-hero .ref-board .r-panel:has(.r-img[style*="url"]) .r-ph{display:none}
+
+  /* Sello circular giratorio */
+  .sub-hero .ref-board .r-badge{position:absolute;z-index:3;top:16px;left:-36px;width:96px;height:96px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 6px #fff;display:grid;place-items:center}
+  .sub-hero .ref-board .r-badge .ring{position:absolute;inset:0;width:100%;height:100%;animation:r-spin 22s linear infinite}
+  .sub-hero .ref-board .r-badge .ring text{fill:#fff;font:600 8.4px Montserrat,system-ui,sans-serif}
+  .sub-hero .ref-board .r-badge .star{width:26px;height:26px;fill:#cdb9f5}
+  @keyframes r-spin{to{transform:rotate(360deg)}}
+
+  /* Tarjeta de cifras en la muesca del panel */
+  .sub-hero .ref-board .r-stats{position:absolute;z-index:2;right:0;bottom:0;display:flex;align-items:center;gap:1.5rem;padding:1.15rem 1.3rem 1.15rem 1.6rem;background:#fff;border-top-left-radius:30px}
+  .sub-hero .ref-board .r-stats::before,.sub-hero .ref-board .r-stats::after{content:"";position:absolute;width:30px;height:30px;pointer-events:none;background:radial-gradient(circle at 0 0,transparent 29.5px,#fff 30px)}
+  .sub-hero .ref-board .r-stats::before{right:0;top:-30px}
+  .sub-hero .ref-board .r-stats::after{left:-30px;bottom:0}
+  .sub-hero .ref-board .r-num{display:grid;line-height:1}
+  .sub-hero .ref-board .r-num strong{font:700 2.3rem/1 Montserrat,system-ui,sans-serif;letter-spacing:-.02em}
+  .sub-hero .ref-board .r-num span{margin-top:.35rem;font:500 .8rem/1.2 Montserrat,system-ui,sans-serif;color:#4a4363}
+  .sub-hero .ref-board .r-side{display:grid;justify-items:start;gap:.7rem}
+  .sub-hero .ref-board .r-avs{display:flex}
+  .sub-hero .ref-board .r-avs i{width:30px;height:30px;margin-left:-8px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;font:700 .68rem/1 Montserrat,system-ui,sans-serif;font-style:normal;color:var(--ink)}
+  .sub-hero .ref-board .r-avs i:first-child{margin-left:0}
+  .sub-hero .ref-board .r-avs i:nth-child(1){background:#cdb9f5}
+  .sub-hero .ref-board .r-avs i:nth-child(2){background:#b9ecd6}
+  .sub-hero .ref-board .r-avs i:nth-child(3){background:#f6b9e0}
+
+  @media (max-width:860px){
+    .sub-hero .ref-board{grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "panel" "tags";gap:1.3rem;border-radius:28px}
+    .sub-hero .ref-board .r-panel{min-height:430px;margin-top:1.4rem}
+    .sub-hero .ref-board .r-badge{top:-30px;left:18px;width:84px;height:84px}
+    .sub-hero .ref-board .r-stats{left:12px;right:12px;bottom:12px;justify-content:space-between;border-radius:24px;padding:1rem 1.1rem;box-shadow:0 14px 30px -18px rgba(16,12,30,.55)}
+    .sub-hero .ref-board .r-stats::before,.sub-hero .ref-board .r-stats::after{display:none}
+  }
+  @media (max-width:480px){
+    .sub-hero .ref-board .r-avs{display:none}
+    .sub-hero .ref-board .r-tags{padding:1rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .sub-hero .ref-board .r-badge .ring{animation:none}
+    .sub-hero .ref-board .r-btn{transition:none}
+  }
+</style>
+</head>
+<body class="t-lilac">
+
+<header class="sub-hero">
+  <nav>
+    <a class="logo" href="../index.html">Luisa<i>.</i></a>
+    <ul><li><a href="../index.html#sobre-mi">Sobre mí</a></li><li><a href="../index.html#proyectos">Proyectos</a></li></ul>
+    <a class="pill ghost small" href="../index.html">Inicio</a>
+  </nav>
+  <div class="ref-board">
+    <div class="r-copy">
+      <a class="r-back" href="../index.html#proyectos">← Volver a proyectos</a>
+      <h1>Digital<br>Product<br>&amp; <em>UX</em></h1>
+      <p>Dos sitios web y una app móvil: desde un sitio corporativo en WordPress hasta el flujo, la experiencia y la interfaz de una app para un evento.</p>
+      <div class="r-actions">
+        <a class="r-btn solid" href="#proyectos">Ver proyectos</a>
+        <a class="r-btn line" href="../index.html#sobre-mi">Sobre mí</a>
+      </div>
+    </div>
+
+    <ul class="r-tags" aria-label="Áreas y herramientas">
+      <li>UX/UI</li><li>Web</li>
+      <li>Prototipos</li><li class="on">Apps</li>
+      <li>Figma</li><li>User Flows</li>
+    </ul>
+
+    <div class="r-panel">
+      <div class="r-media">
+        <!-- Marcador de posición: desaparece solo cuando pones tu imagen en .r-img -->
+        <div class="r-ph"><svg class="ico ico-ux" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="34" y="10" width="52" height="98" rx="10"/><path d="M52 20h16"/><rect class="blk b1" x="44" y="38" width="32" height="14" rx="4"/><rect class="blk b2" x="44" y="58" width="32" height="14" rx="4"/><path class="cur" d="M70 78v22l6-6 5 10 4-2-5-10 8-1z" fill="currentColor" stroke="none"/></svg><span><img src="/assets/ux/appmock.png" alt="">/span></div>
+        <!-- IMAGEN DEL PANEL: cambia --img:none por --img:url('../assets/proyectos/hero-ux.png') -->
+        <span class="r-img" style="--img:none" role="img" aria-label="Imagen destacada de Digital Product y UX"></span>
+      </div>
+
+      <div class="r-badge" aria-hidden="true">
+        <svg class="ring" viewBox="0 0 100 100"><defs><path id="rRing" d="M50 50m-34 0a34 34 0 1 1 68 0a34 34 0 1 1-68 0"/></defs><text><textPath href="#rRing" textLength="211" lengthAdjust="spacing">Digital Product &amp; UX · Web · Apps · </textPath></text></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 1c.9 6.2 4.8 10.1 11 11-6.2.9-10.1 4.8-11 11-.9-6.2-4.8-10.1-11-11 6.2-.9 10.1-4.8 11-11z"/></svg>
+      </div>
+
+      <div class="r-stats">
+        <div class="r-num"><strong>3</strong><span>proyectos</span></div>
+        <div class="r-side">
+          <span class="r-avs" aria-hidden="true"><i>A</i><i>D</i><i>E</i></span>
+          <a class="r-btn solid sm" href="#proyectos">Ver proyectos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="proyectos" style="scroll-margin-top:1rem">
+    <h2 class="in">Proyectos de esta área</h2>
+    <div class="carousel in">
+      <button class="glass car-btn prev" type="button" aria-label="Ver proyectos anteriores" data-car="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="cascade">
+
+        <!-- ============ PROYECTO 01 · Sitio corporativo Affi ============ -->
+        <article class="pcard" style="--i:0;--r:-4deg">
+          <!-- IMAGEN DE LA TARJETA: pon data-img="../assets/proyectos/affi-portada.jpg" -->
+          <div class="pimg" data-img="/assets/ux/affi2.JPG"><svg class="ico ico-ux" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="34" y="10" width="52" height="98" rx="10"/><path d="M52 20h16"/><rect class="blk b1" x="44" y="38" width="32" height="14" rx="4"/><rect class="blk b2" x="44" y="58" width="32" height="14" rx="4"/><path class="cur" d="M70 78v22l6-6 5 10 4-2-5-10 8-1z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="pcap">
+            <h3>Sitio corporativo Affi</h3>
+            <button class="pill glass small" type="button" data-open>Ver proyecto</button>
+          </div>
+          <template>
+            <!-- MOCKUP: reemplaza --img:none por --img:url('../assets/proyectos/affi-mockup.jpg') -->
+            <figure class="mock mock-browser">
+              <div class="mock-bar"><i></i><i></i><i></i><span></span></div>
+              <div class="mock-screen" 
+     data-label="Aquí va tu imagen del sitio de Affi" 
+     role="img" 
+     aria-label="Mockup del sitio corporativo de Affi">
+     <span class="mock-img" style="--img: url('../assets/ux/affi.png');"></span>
+
+</div>
+            </figure>
+            <h4>Descripción corta</h4>
+            <!-- EDITA: agrega el objetivo del sitio y el resultado -->
+            <p>Página web corporativa para Affi con diseño fronted (efecto de vidrio esmerilado). La construí en WordPress con Elementor y sumé código web para ajustar detalles a medida.</p>
+            <h4>Herramientas que utilicé</h4>
+            <ul class="tools">
+              <li tabindex="0" data-tip="Plataforma sobre la que se construyó y se administra el sitio.">WordPress</li>
+              <li tabindex="0" data-tip="Maquetación visual de las secciones y del estilo frosted.">Elementor</li>
+              <li tabindex="0" data-tip="Ajustes a medida más allá de lo que permite el constructor.">Código web</li>
+            </ul>
+          </template>
+        </article>
+
+        <aside class="pintro" style="--i:1;--r:1.5deg">
+          <span class="dot"></span>
+          <h3>Selección de proyectos</h3>
+          <p>Dos sitios web y una app móvil. Abre cada tarjeta para ver el mockup, lo que hice y las herramientas.</p>
+        </aside>
+
+        <!-- ============ PROYECTO 02 · Web resource Dropi ============ -->
+        <article class="pcard" style="--i:2;--r:2deg">
+          <!-- IMAGEN DE LA TARJETA: pon data-img="../assets/proyectos/dropi-portada.jpg" -->
+          <div class="pimg" data-img="/assets/ux/WRS.PNG"><svg class="ico ico-ux" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="34" y="10" width="52" height="98" rx="10"/><path d="M52 20h16"/><rect class="blk b1" x="44" y="38" width="32" height="14" rx="4"/><rect class="blk b2" x="44" y="58" width="32" height="14" rx="4"/><path class="cur" d="M70 78v22l6-6 5 10 4-2-5-10 8-1z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="pcap">
+            <h3>Web resource Dropi</h3>
+            <button class="pill glass small" type="button" data-open>Ver proyecto</button>
+          </div>
+          <template>
+            <!-- MOCKUP: reemplaza --img:none por --img:url('../assets/proyectos/dropi-mockup.jpg') -->
+            <figure class="mock mock-browser">
+              <div class="mock-bar"><i></i><i></i><i></i><span></span></div>
+              <div class="mock-screen" data-label="Aquí va tu imagen del web resource de Dropi" role="img" aria-label="Mockup del web resource de Dropi"><span class="mock-img" style="--img: url('../assets/ux/WEBESOURC.png');"></span></div>
+            </figure>
+            <h4>Descripción corta</h4>
+            <!-- EDITA: agrega el objetivo del web resource y el resultado -->
+            <p>Web resource de Dropi desarrollado con apoyo de Claude y escrito en código HTML y CSS.</p>
+            <h4>Herramientas que utilicé</h4>
+            <ul class="tools">
+              <li tabindex="0" data-tip="Apoyo para generar y afinar el código del sitio.">Claude</li>
+              <li tabindex="0" data-tip="Estructura de las páginas y su contenido.">HTML</li>
+              <li tabindex="0" data-tip="Estilos y diseño visual del sitio.">CSS</li>
+            </ul>
+          </template>
+        </article>
+
+        <!-- ============ PROYECTO 03 · App Expo Winner ============ -->
+        <article class="pcard" style="--i:3;--r:-2deg">
+          <!-- IMAGEN DE LA TARJETA: pon data-img="../assets/proyectos/expowinner-portada.jpg" -->
+          <div class="pimg" data-img="/assets/ux/app.PNG"><svg class="ico ico-ux" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="34" y="10" width="52" height="98" rx="10"/><path d="M52 20h16"/><rect class="blk b1" x="44" y="38" width="32" height="14" rx="4"/><rect class="blk b2" x="44" y="58" width="32" height="14" rx="4"/><path class="cur" d="M70 78v22l6-6 5 10 4-2-5-10 8-1z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="pcap">
+            <h3>App Expo Winner</h3>
+            <button class="pill glass small" type="button" data-open>Ver proyecto</button>
+          </div>
+          <template>
+            <!-- MOCKUP DE CELULAR: reemplaza --img:none por --img:url('../assets/proyectos/expowinner-app.jpg') -->
+            <figure class="mock mock-phone">
+              <div class="mock-screen" data-label="Aquí va la pantalla de la app" role="img" aria-label="Mockup de la app móvil de Expo Winner"><span class="mock-img" style="--img: url('../assets/ux/app2.png');"></span></div>
+            </figure>
+            <h4>Descripción corta</h4>
+            <!-- EDITA: agrega el objetivo de la app y el resultado en el evento -->
+            <p>App móvil para el evento Expo Winner. Diseñé el flujo de usuario, la ruta y toda la experiencia (UX) y la interfaz (UI) de la app.</p>
+            <h4>Mi aporte</h4>
+            <!-- EDITA: si quieres, agrega aquí las herramientas que usaste (por ejemplo Figma) -->
+            <ul class="tools">
+              <li tabindex="0" data-tip="Cómo se conectan las pantallas y qué acciones puede hacer cada persona.">Flujo de usuario</li>
+              <li tabindex="0" data-tip="El recorrido que sigue la persona por la app durante el evento.">Ruta de usuario</li>
+              <li tabindex="0" data-tip="Diseño de la experiencia: estructura, navegación y lógica de uso.">Diseño UX</li>
+              <li tabindex="0" data-tip="Diseño de la interfaz: pantallas, componentes y estilo visual.">Diseño UI</li>
+            </ul>
+            <h4>Equipo</h4>
+            <p class="team">UX/UI y flujo de usuario: Luisa Fernanda Pérez Selada.<br>Backend: Carlos Díaz y Felipe Peña.</p>
+          </template>
+        </article>
+
+        <span class="bubble b1" aria-hidden="true">Web</span>
+        <span class="bubble b2" aria-hidden="true">Apps</span>
+      </div>
+      <button class="glass car-btn next" type="button" aria-label="Ver más proyectos" data-car="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="pager">
+      <a class="pill line" href="espacios-experiencias.html">← Espacios &amp; Experiencias</a>
+      <a class="pill line" href="visual-motion.html">Visual &amp; Motion →</a>
+    </div>
+  </section>
+</main>
+
+<footer><strong>Luisa Fernanda Pérez Selada</strong>Diseñadora Industrial · Especialista en Ecommerce</footer>
+<!-- Ventana emergente (se llena con el contenido de cada proyecto) -->
+<div class="modal" id="modal" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="mwin" role="dialog" aria-modal="true" aria-labelledby="mTitle" tabindex="-1">
+    <div class="mbar">
+      <span class="mlabel"><i></i>Digital Product &amp; UX</span>
+      <div class="mctl">
+        <button class="glass mbtn" type="button" data-act="min" aria-label="Minimizar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg></button>
+        <button class="glass mbtn" type="button" data-act="fit" aria-label="Ajustar tamaño" aria-pressed="false"><svg class="i-exp" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg><svg class="i-min" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10h-6V4M4 14h6v6M14 10l7-7M10 14l-7 7"/></svg></button>
+        <button class="glass mbtn" type="button" data-act="close" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+<button class="pill glass small dock" id="dock" type="button" data-act="restore" aria-label="Restaurar proyecto"><span id="dockTitle">Proyecto</span> ↑</button>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
